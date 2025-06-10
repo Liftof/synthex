@@ -50,7 +50,7 @@ export default function Assistant() {
 	}
 
 	return (
-		<div className="h-full w-full bg-white">
+		<div className="h-full w-full">
 			<Chat
 				items={chatMessages}
 				onSendMessage={handleSendMessage}

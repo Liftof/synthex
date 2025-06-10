@@ -31,8 +31,8 @@ const Chat: React.FC<ChatProps> = ({ items, onApprovalResponse }) => {
 
 	return (
 		<div className="flex justify-center items-center size-full">
-			<div className="flex grow flex-col h-full max-w-7xl gap-2">
-				<div className="h-[90vh] overflow-y-auto px-10 flex flex-col">
+			<div className="flex grow flex-col h-full max-w-4xl gap-2">
+				<div className="h-[70vh] overflow-y-auto px-6 flex flex-col">
 					<div className="mt-auto space-y-5 pt-4">
 						{items.map((item, index) => (
 							<React.Fragment key={index}>

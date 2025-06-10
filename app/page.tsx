@@ -100,34 +100,35 @@ export default function Main() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-			<div className="w-full max-w-lg">
-				{/* Logo */}
-				<div className="fixed top-8 left-0 right-0 flex justify-center mb-8">
-					<Image
-						src="/synthex_logo.svg"
-						alt="Synthex"
-						width={200}
-						height={60}
-						className="object-contain"
-					/>
-				</div>
+		<div className="min-h-screen dots-pattern flex items-center justify-center p-4">
+			{/* Logo fixé en haut */}
+			<div className="fixed top-8 left-0 right-0 flex justify-center z-10">
+				<Image
+					src="/synthex_logo.svg"
+					alt="Synthex"
+					width={200}
+					height={60}
+					className="object-contain"
+				/>
+			</div>
 
-				{/* Test navigation link */}
-				<div className="fixed top-8 right-8">
-					<Link
-						href="/results"
-						className="text-sm text-gray-600 hover:text-gray-900 underline"
-					>
-						Test Transition →
-					</Link>
-				</div>
+			{/* Test navigation link */}
+			<div className="fixed top-8 right-8 z-10">
+				<Link
+					href="/results"
+					className="text-sm text-gray-600 hover:text-gray-900 underline"
+				>
+					Test Transition →
+				</Link>
+			</div>
 
+			{/* Card principale avec le contenu */}
+			<div className="w-full max-w-lg white-card p-8 animate-fade-in">
 				{/* Title */}
-				<h1 className="text-6xl font-bold text-center mb-2 text-nowrap">
+				<h1 className="text-5xl font-bold text-center mb-3 text-gray-900">
 					Social Media Audit
 				</h1>
-				<p className="text-gray-600 text-center mb-8">
+				<p className="text-gray-600 text-center mb-8 text-lg">
 					Generate comprehensive insights and analytics for any social platform
 				</p>
 
@@ -147,7 +148,7 @@ export default function Main() {
 							value={accountUrl}
 							onChange={(e) => setAccountUrl(e.target.value)}
 							placeholder="https://instagram.com/username"
-							className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
+							className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-gray-50 hover:bg-white"
 							required
 						/>
 					</div>

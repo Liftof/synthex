@@ -24,9 +24,9 @@ export default function Results() {
 	}, [conversationItems, chatMessages, router])
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen dots-pattern">
 			{/* Header */}
-			<div className="bg-white border-b border-gray-200 sticky top-0 z-10">
+			<div className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-10">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-between h-16">
 						{/* Back button and logo */}
@@ -56,9 +56,11 @@ export default function Results() {
 				</div>
 			</div>
 
-			{/* Chat container */}
-			<div className="flex-1">
-				<Assistant />
+			{/* Chat container dans une card blanche */}
+			<div className="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+				<div className="white-card p-6 animate-fade-in">
+					<Assistant />
+				</div>
 			</div>
 		</div>
 	)
