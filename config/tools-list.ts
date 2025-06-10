@@ -23,4 +23,36 @@ export const toolsList = [
     description: "Get a programming joke",
     parameters: {},
   },
+  {
+    name: "get_social_media_urls",
+    description: "Rechercher les URLs des profils de réseaux sociaux pour une personne, marque ou entreprise",
+    parameters: {
+      prompt: {
+        type: "string",
+        description: "Le nom de la personne, marque ou entreprise à rechercher sur les réseaux sociaux",
+      },
+    },
+  },
+  {
+    name: "scrape_social_media_stats",
+    description: "Scraper les statistiques d'un profil de réseau social entre deux dates. L'utilisateur peut fournir les informations dans ce format : URL, plateforme, date début, date fin (chacune sur une ligne séparée ou séparées par des espaces/virgules)",
+    parameters: {
+      url: {
+        type: "string",
+        description: "L'URL complète du profil de réseau social à scraper (ex: https://www.tiktok.com/@streammaxfr)",
+      },
+      platform: {
+        type: "string",
+        description: "Le nom de la plateforme (TikTok, Instagram, Twitter, Facebook, YouTube)",
+      },
+      date_debut: {
+        type: "string",
+        description: "Date de début au format 'day/month/year' (ex: '10/05/2025')",
+      },
+      date_fin: {
+        type: "string",
+        description: "Date de fin au format 'day/month/year' (ex: '10/06/2025')",
+      },
+    },
+  },
 ];
