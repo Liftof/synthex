@@ -311,64 +311,98 @@ export async function POST(request: NextRequest) {
 
 **IMPORTANT**: You will receive REAL DATA already collected via a function call. You must analyze THIS PROVIDED DATA and generate a comprehensive report. You do NOT need to collect data yourself, it will be provided to you.
 
-You must produce a COMPLETE and DETAILED analysis report in English with graphs, tables and strategic recommendations based on the data you will receive.
+You must produce a COMPLETE and DETAILED analysis report in English with proper markdown formatting, tables and strategic recommendations based on the data you will receive.
 
 ## EXPECTED REPORT STRUCTURE:
 
-### 📊 QUANTITATIVE ANALYSIS
-- **Global Metrics**: Tables with totals (views, likes, shares, comments)
-- **Engagement Rate**: Calculations and comparisons with industry averages
-- **Performance Distribution**: Video breakdown by performance tiers
-- **Temporal Evolution**: Trend analysis over time
+### 📊 EXECUTIVE SUMMARY
+- **Key Performance Indicators**: Overall account performance
+- **Main Findings**: Top 3 insights discovered
+- **Priority Recommendations**: Most critical actions to take
 
-### 📈 GRAPHS AND VISUALIZATIONS 
-Use markdown to create visual representations:
-- Bar charts with ASCII characters
-- Detailed comparative tables
-- Distribution diagrams
-- Performance timeline
+### 📈 PERFORMANCE METRICS ANALYSIS
+**Global Account Statistics:**
+| Metric | Value | Industry Benchmark | Status |
+|--------|-------|-------------------|---------|
+| Total Videos | [number] | - | ✅ |
+| Total Views | [number] | - | ✅ |
+| Average Engagement Rate | [%] | 3-6% | [status] |
 
-### 🎯 QUALITATIVE ANALYSIS
-- **Topic Analysis**: Which themes/hashtags perform best/worst
-- **Optimal Timing**: Best posting time slots
-- **Content Format**: Types of content that engage the most
-- **Semantic Analysis**: Recurring keywords in top/flop videos
+**Content Performance Distribution:**
+- **High Performers** (>50K views): [number] videos ([%])
+- **Average Performers** (10-50K views): [number] videos ([%])  
+- **Low Performers** (<10K views): [number] videos ([%])
 
-### 🔍 CROSS-ANALYSIS
-- **Correlations**: Views vs engagement, duration vs performance
-- **Segmentation**: Video profiles by performance
-- **Benchmarking**: Comparison with TikTok standards
-- **Temporal Patterns**: Optimal days/hours
+### 🎯 TOP PERFORMING CONTENT ANALYSIS
 
-### 💡 STRATEGIC RECOMMENDATIONS
-- **Priority Actions**: Top 5 improvements to implement
-- **Content Optimization**: Topics/formats to prioritize/avoid
-- **Editorial Calendar**: Best times to publish
-- **KPIs to Track**: Key metrics to measure progress
+**Best Performing Videos:**
+| Rank | Views | Engagement Rate | Topic/Theme | Key Success Factors |
+|------|-------|----------------|-------------|-------------------|
+| 1 | [views] | [rate]% | [theme] | [factors] |
+| 2 | [views] | [rate]% | [theme] | [factors] |
 
-### 📋 DATA TABLES
-MUST present:
-- Top 10 videos (with detailed metrics)
-- Bottom 10 videos (with failure reasons)
-- Breakdown by hashtags/topics
-- Day/hour publication analysis
+**Success Patterns Identified:**
+- **Content Types**: [analysis]
+- **Hashtag Strategies**: [analysis]
+- **Posting Timing**: [analysis]
 
-## FORMAT REQUIREMENTS:
-- Use **emojis** to structure
-- Create detailed **markdown tables**
-- Make visual **graphs** and **charts** or **diagrams**
-- Use **bullet points** and **numbered lists**
-- **Bold** key points
-- Add **colored sections** with alerts
+### 📉 UNDERPERFORMING CONTENT ANALYSIS
+
+**Areas for Improvement:**
+- **Content Gaps**: [specific areas]
+- **Engagement Issues**: [specific problems]
+- **Timing Optimization**: [recommendations]
+
+### 🔍 STRATEGIC INSIGHTS
+
+**Content Strategy Recommendations:**
+1. **Immediate Actions** (Next 30 days)
+   - [Specific actionable recommendation]
+   - [Specific actionable recommendation]
+
+2. **Medium-term Strategy** (Next 3 months)
+   - [Strategic recommendation]
+   - [Strategic recommendation]
+
+3. **Long-term Vision** (6+ months)
+   - [Long-term recommendation]
+   - [Long-term recommendation]
+
+**Performance Optimization:**
+- **Best Posting Times**: [specific times based on data]
+- **Content Mix Optimization**: [percentages and ratios]
+- **Hashtag Strategy**: [specific hashtag recommendations]
+
+### 📊 DETAILED DATA ANALYSIS
+
+**Monthly Performance Trends:**
+[Analyze temporal patterns in the data]
+
+**Engagement Rate Analysis:**
+[Deep dive into engagement patterns]
+
+**Content Category Performance:**
+[Break down by content types/themes]
+
+## FORMATTING REQUIREMENTS:
+- Use **markdown tables** for data presentation
+- Use **emojis** strategically for visual appeal
+- Use **bullet points** and **numbered lists** for readability
+- **Bold** key metrics and important points
+- Use **blockquotes** for key insights
+- NO ASCII art or text-based charts - use proper markdown tables instead
 
 ## WRITING STYLE:
 - Professional yet accessible
-- Actionable and concrete insights
-- Justify each recommendation with data
-- Propose quantified objectives
+- Data-driven insights with specific numbers
+- Actionable recommendations with clear next steps
+- Justify each recommendation with evidence from the data
 
-## FINAL INSTRUCTION:
-You MUST generate the complete report based on the provided data. Do NOT refuse to do the analysis on the grounds that you cannot access the data - it is ALREADY provided to you via the function tool. Analyze the received data and generate the requested report.`,
+## CRITICAL: 
+- Generate the complete report based on the provided data
+- Include specific metrics and numbers from the actual data
+- Make recommendations based on patterns you identify in the real data
+- Focus on actionable insights rather than generic advice`,
 			},
 			{
 				role: 'user',
