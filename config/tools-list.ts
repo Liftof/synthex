@@ -24,18 +24,6 @@ export const toolsList = [
 		parameters: {},
 	},
 	{
-		name: 'get_social_media_urls',
-		description:
-			'Rechercher les URLs des profils de réseaux sociaux pour une personne, marque ou entreprise',
-		parameters: {
-			prompt: {
-				type: 'string',
-				description:
-					'Le nom de la personne, marque ou entreprise à rechercher sur les réseaux sociaux',
-			},
-		},
-	},
-	{
 		name: 'scrape_social_media_stats',
 		description:
 			"Scraper les statistiques d'un profil de réseau social. L'API retourne automatiquement tous les posts disponibles avec leurs dates.",

@@ -3,8 +3,26 @@ import Assistant from '@/components/assistant'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import useConversationStore from '@/stores/useConversationStore'
 
 export default function Results() {
+	const router = useRouter()
+	const { conversationItems, chatMessages } = useConversationStore()
+
+	useEffect(() => {
+		const hasUserMessages = conversationItems.some(
+			(item: any) => item.role === 'user'
+		)
+
+		const hasAnalysisStarted = chatMessages.length > 1 || hasUserMessages
+
+		if (!hasAnalysisStarted) {
+			router.push('/')
+		}
+	}, [conversationItems, chatMessages, router])
+
 	return (
 		<div className="min-h-screen bg-gray-50">
 			{/* Header */}
@@ -22,7 +40,7 @@ export default function Results() {
 							</Link>
 							<div className="h-8 w-px bg-gray-300"></div>
 							<Image
-								src="/synthex_logo.png"
+								src="/synthex_logo.svg"
 								alt="Synthex"
 								width={100}
 								height={32}
