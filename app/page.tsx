@@ -2,10 +2,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import useToolsStore from '@/stores/useToolsStore'
-import { processMessages } from '@/lib/assistant'
-import useConversationStore from '@/stores/useConversationStore'
 
 export default function Main() {
 	const [accountUrl, setAccountUrl] = useState('')
@@ -19,8 +16,6 @@ export default function Main() {
 		setMcpEnabled,
 		setFileSearchEnabled,
 	} = useToolsStore()
-
-	const { addConversationItem, addChatMessage } = useConversationStore()
 
 	useEffect(() => {
 		// Configurer les outils au chargement de la page
@@ -55,7 +50,7 @@ export default function Main() {
 		const platform = extractPlatform(accountUrl)
 		if (!platform) {
 			alert(
-				'Veuillez entrer une URL valide de réseau social (TikTok, Instagram, Twitter/X, Facebook, YouTube)'
+				'Please enter a valid social media URL (TikTok, Instagram, Twitter/X, Facebook, YouTube)'
 			)
 			return
 		}
@@ -63,38 +58,11 @@ export default function Main() {
 		setIsLoading(true)
 
 		try {
-			// Créer le message pour l'assistant
-			// const message = `Utilise la fonction scrape_social_media_stats pour analyser ce profil ${platform}. URL: ${accountUrl}, Plateforme: ${platform}. Génère ensuite un rapport complet avec les statistiques et insights.`
-
-			const message = `Lancement d'un audit pour le compte ${
-				accountUrl.split('/').pop() || accountUrl
-			} sur ${platform}.`
-
-			const userMessage = {
-				role: 'user' as const,
-				content: message,
-			}
-
-			const userItem = {
-				type: 'message' as const,
-				role: 'user' as const,
-				content: [{ type: 'input_text' as const, text: message }],
-			}
-
-			// Ajouter le message à la conversation
-			addConversationItem(userMessage)
-			addChatMessage(userItem)
-
-			// Rediriger immédiatement vers la page de résultats
-			router.push('/results')
-
-			// Traiter les messages en arrière-plan
-			processMessages().catch((error) => {
-				console.error('Erreur lors du traitement des messages:', error)
-			})
+			// Rediriger vers la page de résultats avec l'URL en paramètre
+			router.push(`/results?url=${encodeURIComponent(accountUrl)}`)
 		} catch (error) {
-			console.error('Erreur:', error)
-			alert("Une erreur s'est produite lors de l'analyse")
+			console.error('Error:', error)
+			alert('An error occurred during the analysis')
 			setIsLoading(false)
 		}
 	}
@@ -112,24 +80,16 @@ export default function Main() {
 				/>
 			</div>
 
-			{/* Test navigation link */}
-			<div className="fixed top-8 right-8 z-10">
-				<Link
-					href="/results"
-					className="text-sm text-gray-600 hover:text-gray-900 underline"
-				>
-					Test Transition →
-				</Link>
-			</div>
-
 			{/* Card principale avec le contenu */}
-			<div className="w-full max-w-lg white-card p-8 animate-fade-in">
+			<div className="w-full max-w-2xl white-card p-8 animate-fade-in">
 				{/* Title */}
 				<h1 className="text-5xl font-bold text-center mb-3 text-gray-900">
-					Social Media Audit
+					Transform Your TikTok Into Strategic Gold
 				</h1>
 				<p className="text-gray-600 text-center mb-8 text-lg">
-					Generate comprehensive insights and analytics for any social platform
+					Get precise and tailored insights for your social media strategy.
+					Simply share your TikTok URL and receive actionable recommendations to
+					boost your brand&apos;s performance.
 				</p>
 
 				{/* Form */}
@@ -147,7 +107,7 @@ export default function Main() {
 							id="accountUrl"
 							value={accountUrl}
 							onChange={(e) => setAccountUrl(e.target.value)}
-							placeholder="https://instagram.com/username"
+							placeholder="https://www.tiktok.com/@username"
 							className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-gray-50 hover:bg-white"
 							required
 						/>
