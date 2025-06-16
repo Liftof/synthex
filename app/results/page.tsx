@@ -45,18 +45,23 @@ export default function Results() {
 
 			const reader = response.body?.getReader()
 			const decoder = new TextDecoder()
+			let buffer = '' // Add buffer for incomplete chunks
 
 			if (reader) {
 				while (true) {
 					const { done, value } = await reader.read()
 					if (done) break
 
-					const chunk = decoder.decode(value)
-					const lines = chunk.split('\n')
+					const chunk = decoder.decode(value, { stream: true }) // Important: add stream: true
+					buffer += chunk
+
+					// Process complete lines only
+					const lines = buffer.split('\n')
+					buffer = lines.pop() || '' // Keep incomplete line in buffer
 
 					for (const line of lines) {
 						if (line.startsWith('data: ')) {
-							const data = line.slice(6)
+							const data = line.slice(6).trim()
 							if (data === '[DONE]') {
 								setIsAnalyzing(false)
 								return
@@ -71,22 +76,39 @@ export default function Results() {
 								) {
 									const newContent = parsed.choices[0].delta.content
 
-									// Vérifier si c'est le message "Analyzing profile" et s'il n'est pas déjà présent
-									if (newContent.includes('🔍 Analyzing profile')) {
-										setStreamingData((prev) => {
-											// Si le message est déjà présent, ne pas l'ajouter
-											if (prev.includes('🔍 Analyzing profile')) {
-												return prev
-											}
-											return prev + newContent
-										})
-									} else {
-										// Pour tout autre contenu, l'ajouter normalement
-										setStreamingData((prev) => prev + newContent)
-									}
+									// Clean content handling
+									setStreamingData((prev) => {
+										// Avoid duplicate "Analyzing profile" messages
+										if (newContent.includes('🔍 Analyzing profile') && 
+											prev.includes('🔍 Analyzing profile')) {
+											return prev
+										}
+										return prev + newContent
+									})
 								}
-							} catch {
-								// Ignore parsing errors
+							} catch (parseError) {
+								// Log parsing errors for debugging
+								console.warn('Failed to parse SSE data:', data, parseError)
+							}
+						}
+					}
+				}
+
+				// Process any remaining buffer
+				if (buffer.trim()) {
+					const remainingLines = buffer.split('\n')
+					for (const line of remainingLines) {
+						if (line.startsWith('data: ')) {
+							const data = line.slice(6).trim()
+							if (data !== '[DONE]') {
+								try {
+									const parsed = JSON.parse(data)
+									if (parsed.choices?.[0]?.delta?.content) {
+										setStreamingData((prev) => prev + parsed.choices[0].delta.content)
+									}
+								} catch {
+									// Ignore incomplete JSON
+								}
 							}
 						}
 					}

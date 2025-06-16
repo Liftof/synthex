@@ -513,8 +513,22 @@ You must produce a COMPLETE and DETAILED analysis report in English with proper 
 								for await (const finalChunk of finalCompletion) {
 									const finalChoice = finalChunk.choices[0]
 									if (finalChoice.delta.content) {
+										// Ensure clean JSON serialization
+										const cleanChunk = {
+											...finalChunk,
+											choices: [
+												{
+													...finalChoice,
+													delta: {
+														...finalChoice.delta,
+														content: finalChoice.delta.content
+													}
+												}
+											]
+										}
+										
 										controller.enqueue(
-											encoder.encode(`data: ${JSON.stringify(finalChunk)}\n\n`)
+											encoder.encode(`data: ${JSON.stringify(cleanChunk)}\n\n`)
 										)
 									}
 
